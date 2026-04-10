@@ -1,0 +1,49 @@
+{
+  "name": "grounded-ai",
+  "version": "2.0.0",
+  "description": "AI assistants that read your codebase before responding",
+  "type": "module",
+  "keywords": [
+    "ai",
+    "llm",
+    "skill",
+    "grounded",
+    "code-exploration",
+    "context-aware",
+    "persistent-memory",
+    "evidence-based",
+    "claude",
+    "ai-assistant"
+  ],
+  "author": "iammalego",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iammalego/grounded-ai.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iammalego/grounded-ai/issues"
+  },
+  "homepage": "https://github.com/iammalego/grounded-ai#readme",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "docs/",
+    "examples/"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "docs:serve": "npx serve docs/",
+    "validate": "echo 'Skill validation: Check SKILL.md structure and examples'"
+  },
+  "categories": [
+    "ai-skills",
+    "developer-tools",
+    "code-intelligence"
+  ]
+}
