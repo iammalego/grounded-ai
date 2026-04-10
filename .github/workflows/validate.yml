@@ -1,0 +1,85 @@
+name: Skill Validation
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check SKILL.md exists
+        run: |
+          if [ ! -f SKILL.md ]; then
+            echo "❌ SKILL.md is missing!"
+            exit 1
+          fi
+          echo "✅ SKILL.md exists"
+
+      - name: Validate SKILL.md structure
+        run: |
+          # Check for required sections
+          required_sections=(
+            "When to Use"
+            "Critical Rule"
+            "Memory Integration"
+            "Query Classification"
+            "Progressive Disclosure"
+          )
+
+          for section in "${required_sections[@]}"; do
+            if ! grep -q "$section" SKILL.md; then
+              echo "❌ Missing required section: $section"
+              exit 1
+            fi
+            echo "✅ Section found: $section"
+          done
+
+      - name: Check documentation completeness
+        run: |
+          # Verify all docs exist
+          docs=(
+            "README.md"
+            "CHANGELOG.md"
+            "CONTRIBUTING.md"
+            "LICENSE"
+            "docs/ARCHITECTURE.md"
+          )
+
+          for doc in "${docs[@]}"; do
+            if [ ! -f "$doc" ]; then
+              echo "⚠️  Missing documentation: $doc"
+            else
+              echo "✅ Documentation exists: $doc"
+            fi
+          done
+
+      - name: Validate examples
+        run: |
+          if [ ! -d examples ]; then
+            echo "⚠️  No examples directory"
+            exit 0
+          fi
+
+          example_count=$(ls examples/*.md 2>/dev/null | wc -l)
+          if [ "$example_count" -eq 0 ]; then
+            echo "⚠️  No example files found"
+          else
+            echo "✅ Found $example_count example files"
+          fi
+
+      - name: Check line counts
+        run: |
+          skill_lines=$(wc -l < SKILL.md)
+          echo "SKILL.md has $skill_lines lines"
+
+          if [ "$skill_lines" -lt 1000 ]; then
+            echo "⚠️  SKILL.md seems short ($skill_lines lines)"
+          else
+            echo "✅ SKILL.md is comprehensive ($skill_lines lines)"
+          fi
