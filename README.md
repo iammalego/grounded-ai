@@ -8,6 +8,20 @@
 
 Grounded AI is an intelligent skill system that forces AI assistants to **read and understand your codebase BEFORE responding** when you reference your project. Instead of asking "how does it work?", the AI reads the actual code, uses persistent memory, and answers with evidence.
 
+---
+
+## 📁 The Skill File
+
+**This repository contains ONE file that matters:**
+
+### ⭐ **[`SKILL.md`](./SKILL.md)** ⭐
+
+**That's the skill.** It's ~6,600 lines of instructions that teach AI assistants how to intelligently explore your codebase before responding.
+
+Everything else in this repo is documentation and examples. The magic is in `SKILL.md`.
+
+---
+
 ## 🎯 The Problem
 
 **Current AI behavior (frustrating):**
@@ -46,21 +60,23 @@ AI: "I see in src/agent/agent.ts line 233 that the loop uses
 - FastCode study: Progressive disclosure reduces tokens 65-70%
 - Codevira research: Persistent memory reduces overhead 15K→1.4K tokens
 
-## 🚀 Quick Start
+## 🚀 Quick Start (30 seconds)
 
 ### Installation
 
 ```bash
-# Clone the skill
+# 1. Clone this repo
 git clone https://github.com/iammalego/grounded-ai.git
-cd grounded-ai
 
-# Copy to your AI assistant's skills directory
+# 2. Copy SKILL.md to your AI assistant's skills directory
 # For Claude Code / OpenCode:
-cp SKILL.md ~/.config/opencode/skills/grounded-ai/SKILL.md
+cp grounded-ai/SKILL.md ~/.config/opencode/skills/grounded-ai/SKILL.md
 
-# For other AI assistants, place in their skills directory
+# For other AI assistants:
+# Place SKILL.md in their skills/ directory (check your assistant's docs)
 ```
+
+**Done.** The AI will now read code before responding.
 
 ### Usage
 
@@ -147,13 +163,25 @@ The AI will now:
 └─────────────────────────────────────────────────────────────┘
 ```
 
+## 📂 Repository Structure
+
+| File                                             | What it is                                                    | Size        |
+| ------------------------------------------------ | ------------------------------------------------------------- | ----------- |
+| **[`SKILL.md`](./SKILL.md)** ⭐                  | **THE SKILL** — Instructions for AI assistants (~6,600 lines) | **~192 KB** |
+| [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md) | Technical documentation explaining how the skill works        | ~18 KB      |
+| [`examples/`](./examples/)                       | 3 real-world scenarios showing the skill in action            | ~10 KB      |
+| [`CHANGELOG.md`](./CHANGELOG.md)                 | Version history (v1.0 → v2.0)                                 | ~4 KB       |
+| [`CONTRIBUTING.md`](./CONTRIBUTING.md)           | Guide for contributors                                        | ~3 KB       |
+
+**You only need `SKILL.md` to use this.** Everything else is optional reading.
+
 ## 📚 Documentation
 
-- [SKILL.md](./SKILL.md) — Complete skill definition (~8,500 lines)
-- [Architecture](./docs/ARCHITECTURE.md) — Technical deep dive
-- [Examples](./examples/) — Real-world usage examples
-- [Contributing](./CONTRIBUTING.md) — How to contribute
-- [Changelog](./CHANGELOG.md) — Version history
+- **[SKILL.md](./SKILL.md)** — The actual skill (copy this to your AI assistant)
+- **[Architecture](./docs/ARCHITECTURE.md)** — How the 6-phase system works
+- **[Examples](./examples/)** — See it in action with real use cases
+- **[Contributing](./CONTRIBUTING.md)** — Help improve the skill
+- **[Changelog](./CHANGELOG.md)** — What's new in each version
 
 ## 🔬 Research Background
 
